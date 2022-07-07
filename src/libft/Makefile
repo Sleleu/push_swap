@@ -41,7 +41,6 @@ SRC = ft_atoi.c\
       ft_lstiter.c\
       ft_lstlast.c\
       ft_lstnew.c\
-      ft_lstmap.c\
       ft_lstsize.c\
       ft_printf.c\
       ft_format.c\

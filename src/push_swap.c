@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:19 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/06 19:51:51 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/07 19:39:49 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,38 +51,45 @@ void	ft_check_arg(char **argv)
 	}
 }
 
-void	ft_get_stack(char **argv, t_list *a)
+t_list	*ft_init_stack(char **argv, t_list *stack_a)
 {
-	int	i = 0;
+	int	i = 1;
 	int elem;
 	t_list *node;
 	
+	node = stack_a;
 	while (argv[i])
 	{
 		elem = ft_atoi(argv[i]);
-		node->content = &elem;
-		node->next = NULL;
-		a->next = ft_lstnew(node->content);
-		ft_lstadd_back(&a, node);
+		node = ft_lstnew(elem);
+		ft_lstadd_back(&stack_a, node);
 		i++;
+	}
+	return (stack_a);
+}
+
+void ft_printstack(t_list *stack)
+{
+	while (stack)
+	{
+		ft_printf("%d\n", stack->content);
+		stack = stack->next;
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	t_list	*a;
-//	t_list	*b;
-//	int	i;
+	t_list	*stack_a;
+//	t_list	*stack_b;
 
-//	i = 0;
+	stack_a = NULL;
+//	stack_b = NULL;
 	if (argc < 2)
 		ft_error(1);
 	ft_check_arg(argv);
-	ft_get_stack(argv, a);
-/*	while (a[i])
-	{
-		ft_printf("%d\n", a[i]);
-		i++;
-	}*/
+	stack_a = ft_init_stack(argv, stack_a);
+	ft_printstack(stack_a);
+	stack_a = ft_swap_stack(stack_a);
+	ft_printstack(stack_a);
 	return (0);
 }

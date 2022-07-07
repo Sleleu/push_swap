@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 21:42:37 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/07 17:16:24 by sleleu           ###   ########.fr       */
+/*   Created: 2022/07/07 19:29:45 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/07 19:51:15 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../includes/push_swap.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(int))
+t_list *ft_swap_stack(t_list *stack)
 {
-	t_list	*ptr;
-
-	ptr = *lst;
-	while (ptr)
+	t_list *elem;
+	
+	elem = stack;
+	stack = stack->next;
+	while (stack)
 	{
-		ptr = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = ptr;
+		stack = stack->next;
+		elem = stack->next;
 	}
-	*lst = NULL;
+	//ft_swap(&elem->content, &stack->content);
+	ft_printstack(stack);
+	return (stack);
 }

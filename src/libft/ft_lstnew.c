@@ -6,13 +6,13 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:54:43 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/06 14:51:25 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/07 17:18:46 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content)
 {
 	t_list	*new;
 
@@ -20,7 +20,7 @@ t_list	*ft_lstnew(void *content)
 	if (!new)
 		return (NULL);
 	if (!content)
-		new->content = NULL;
+		new->content = 0;
 	else
 		new->content = content;
 	new->next = NULL;
