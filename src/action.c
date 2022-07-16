@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:29:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/13 01:42:59 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:39:04 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ void	ft_rotate(t_list *stack, int action)
 	{
 		ft_swap(&elem1->content, &elem2->content);
 		elem1 = elem1->next;
-		elem2 = elem2->next;
-		
+		elem2 = elem2->next;	
 	}
 	ft_print_action(action);
 }

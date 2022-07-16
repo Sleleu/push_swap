@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:43:19 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/13 02:02:51 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/15 17:46:58 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_algo_three(t_list *stack_a)
 	{
 		if (stack_a->content > stack_a->next->next->content)
 			ft_reverse_rotate(stack_a, RRA);
-		else
+		else if (stack_a->content < stack_a->next->next->content)
 		{
 			ft_reverse_rotate(stack_a, RRA);
 			ft_swap_stack(stack_a, SA);
@@ -71,3 +71,40 @@ void	ft_algo_three(t_list *stack_a)
 		}
 	}
 }	
+
+/*
+void	ft_algo_five(t_list **stack_a, t_list **stack_b)
+{
+	t_list *last;
+	int	min;
+
+	min = (*stack_a)->content;
+	ft_push_stack(stack_b, stack_a, PB);
+	ft_push_stack(stack_b, stack_a, PB);
+	ft_algo_three(*stack_a);
+	
+	while (*stack_b)
+	{
+		if ((*stack_a)->content > (*stack_b)->content)
+			ft_push_stack(stack_a, stack_b, PA);
+		else
+			ft_rotate(*stack_a, RA);
+	}
+	ft_printstack(*stack_a);
+	last = *stack_a;
+	while (last)
+	{
+		if (last->content < min)
+			min = last->content;
+		last = last->next;
+	}
+		ft_printstack(*stack_a);
+		last = ft_lstlast(*stack_a);
+	while (!ft_is_sort(*stack_a, *stack_b))
+	{
+		if (last->content == min)
+			ft_reverse_rotate(*stack_a, RRA);
+		else
+			ft_rotate(*stack_a, RA);
+	}
+}*/
