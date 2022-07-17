@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:53:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/16 22:50:38 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/17 07:26:41 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_list
 {
 	int				content;
+	int				place;
 	struct s_list	*next;
 }			t_list;
 

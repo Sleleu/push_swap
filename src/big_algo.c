@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:39:54 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/17 05:39:51 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/17 07:27:31 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,8 @@ void	ft_init_sort(t_list **stack_a, t_list **stack_b, t_data *data)
 	}
 }
 
-void	ft_select_best_move(t_list **stack_a, t_list **stack_b, t_list *last)
+void	ft_select_best_move(t_list **stack_a, t_list **stack_b)
 {
-	//int	i = 0;
-	//int j = 0;
 	int place_a;
 	int place_b;
 	int best_a = 2147483647;
@@ -61,46 +59,28 @@ void	ft_select_best_move(t_list **stack_a, t_list **stack_b, t_list *last)
 	while (tmp_b)
 	{
 		place_a = 0;
-	//	j = 0;
 		tmp_a = *stack_a;
 		while (tmp_a->next && !(tmp_b->content > tmp_a->content && tmp_b->content < tmp_a->next->content))
 		{
-			//if (place_a > ft_lstsize(*stack_a))
-		//		j++;
-		//	if (j == 1)
-		//		place_a = -place_a;
-		//	ft_printf("place a avant %d\n", place_a);
 			place_a++;
 			tmp_a = tmp_a->next;
-		//	ft_printf("place a apres %d\n", place_a);
 		}
 		if (tmp_a->next && tmp_b->content > tmp_a->content && tmp_b->content < tmp_a->next->content)
 			place_a++;
-		if (abs(place_a) + abs(place_b) < best_move)
+		if (place_a + place_b < best_move)
 		{
 			best_move = place_a + place_b;
 			best_b = place_b;
 			best_a = place_a;
 		}
 		tmp_b = tmp_b->next;
-		//if (place_b > ft_lstsize(*stack_b))
-		//	i++;
-		//if (i == 1)
-		//	place_b = -place_b;
-	//	ft_printf("\n\nplace b avant %d\n", place_b);
 			place_b++;
-	//	ft_printf("\n\nplace b apres %d\n", place_b);
-	//	ft_printf("BEST MOVE A : %d BEST MOVE B %d\n", best_a, best_b);
 	}
-	//ft_printf("BEST MOVE A : %d BEST MOVE B %d\n", best_a, best_b);
-	//ft_travelator_a(stack_a, stack_b, last, best_a);
-	best_a = ft_travelator_b(stack_a, stack_b, best_b, best_a);
-	ft_travelator_a(stack_a, stack_b, last, best_a);
+	ft_move(stack_a, stack_b, best_a, best_b);
 }
 
-void	ft_travelator_a(t_list **stack_a, t_list **stack_b, t_list *last, int best_a)
+void	ft_travelator_a(t_list **stack_a, t_list **stack_b, int best_a)
 {
-	(void)last;
 	if (best_a < ft_lstsize(*stack_a) / 2)
 	{
 		while (best_a != 0)
@@ -123,9 +103,7 @@ void	ft_travelator_a(t_list **stack_a, t_list **stack_b, t_list *last, int best_
 
 int	ft_travelator_b(t_list **stack_a, t_list **stack_b, int place_b, int place_a)
 {
-	(void)stack_a;
-	(void)place_a;
-	if (place_b < ft_lstsize(*stack_b) / 2)
+	if (place_b <= ft_lstsize(*stack_b) / 2)
 	{
 		while (place_b > 0)
 		{
@@ -181,35 +159,23 @@ void	ft_rollthatdude(t_list **stack_a, t_list **stack_b, t_data *data)
 		else
 			ft_reverse_rotate(*stack_a, RRA);
 	}
-	(void)data;
 }
 
 void	ft_big_algo(t_list **stack_a, t_list **stack_b, t_data *data)
 {
 	t_list	*last;
 
-	//	ft_printf("INIT STACK A\n");
-	//	ft_printstack(*stack_a);
 	last = ft_lstlast(*stack_a);
 	ft_init_sort(stack_a, stack_b, data);
 	while (*stack_b && !ft_is_sort(*stack_a, *stack_b))
 	{
-	//	ft_printf("STACK_A\n");
-		//ft_printstack(*stack_a);
-	//	ft_printf("STACK_B\n");
-	//	ft_printstack(*stack_b);
 		last = ft_lstlast(*stack_a);
 		if (ft_place(stack_a, stack_b, last))
 		{
-		//	ft_printf("\nbonne place\n");
 			ft_push_stack(stack_a, stack_b, PA);
 		}
 		else
-			ft_select_best_move(stack_a, stack_b, last);
+			ft_select_best_move(stack_a, stack_b);
 	}
 		ft_rollthatdude(stack_a, stack_b, data);
-		//ft_printf("FINAL STACK A\n");
-		//ft_printstack(*stack_a);
-		//ft_printf("FINAL STACK_B\n");
-	//	ft_printstack(*stack_b);
 }

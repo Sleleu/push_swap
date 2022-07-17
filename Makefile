@@ -7,6 +7,7 @@ SRC = src/push_swap.c\
 	  src/big_algo.c\
 	  src/multiple_action.c\
 	  src/get_data.c\
+	  src/move.c\
 
 OBJ = $(SRC:.c=.o)
 

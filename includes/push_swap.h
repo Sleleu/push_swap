@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:49 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/17 05:17:25 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/17 05:49:30 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_algo_five(t_list **stack_a, t_list **stack_b);
 
 int		ft_place(t_list **stack_a, t_list **stack_b, t_list *last);
 void	ft_init_sort(t_list **stack_a, t_list **stack_b, t_data *data);
-void	ft_travelator_a(t_list **stack_a, t_list **stack_b, t_list *last, int best_a);
+void	ft_travelator_a(t_list **stack_a, t_list **stack_b, int best_a);
 int		ft_travelator_b(t_list **stack_a, t_list **stack_b, int place_b, int place_a);
 void	ft_rollthatdude(t_list **stack_a, t_list **stack_b, t_data *data);
 void	ft_big_algo(t_list **stack_a, t_list **stack_b, t_data *data);
