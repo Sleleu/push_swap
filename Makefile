@@ -1,6 +1,12 @@
 NAME = push_swap
 
-SRC = src/push_swap.c
+SRC = src/push_swap.c\
+	  src/action.c\
+	  src/error.c\
+	  src/little_algo.c\
+	  src/big_algo.c\
+	  src/multiple_action.c\
+	  src/get_data.c\
 
 OBJ = $(SRC:.c=.o)
 
@@ -12,7 +18,7 @@ all: $(NAME)
 
 
 $(NAME) : src/libft/libft.a $(OBJ)
-	$(CC) $(CFLAGS) -g3 $(OBJ) -L src/libft -lft -o $(NAME)
+	$(CC) -g3 $(CFLAGS) $(OBJ) -L src/libft -lft -o $(NAME)
 
 src/libft/libft.a:
 	make -C src/libft

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 00:50:04 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/16 04:04:41 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/17 05:30:14 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_get_median(int *tab, int size, t_data *data)
 {
 	int i;
 	int j;
+	int k;
+	int l;
 
 	i = 0;
 	while (i < size)
@@ -65,7 +67,11 @@ void	ft_get_median(int *tab, int size, t_data *data)
 		i++;
 	}
 	i = i / 2;
+	k = i / 3;
+	l = (i / 3) + k;
 	data->median = tab[i];
+	data->lowmedian = tab[k];
+	data->bigmedian = tab[l];
 }
 
 void	ft_get_data(t_list **stack_a, t_data *data)
