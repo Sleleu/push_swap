@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:49 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/17 05:49:30 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/17 21:49:23 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data
 	int	median;
 	int lowmedian;
 	int bigmedian;
+	int pos_low;
 	int	index;
 }		t_data;
 

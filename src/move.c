@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 06:03:13 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/17 07:10:36 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/17 23:29:47 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,16 @@ void	ft_down(t_list **stack, int *best, char c)
 
 void	ft_move(t_list **stack_a, t_list **stack_b, int best_a, int best_b)
 {
-	if (best_a <= ft_lstsize(*stack_a) && best_b <= ft_lstsize(*stack_b))
+	if (best_a > 0 && best_b > 0)
 		ft_double_up(stack_a, stack_b, &best_a, &best_b);
 	else if (best_a < 0 && best_b < 0)
 		ft_double_down(stack_a, stack_b, &best_a, &best_b);
-	if (best_a <= ft_lstsize(*stack_a))
+	if (best_a > 0)
 		ft_up(stack_a, &best_a, 'a');
 	else if (best_a < 0)
 		ft_down(stack_a, &best_a, 'a');
-	if (best_b <= ft_lstsize(*stack_b))
+	if (best_b > 0)
 		ft_up(stack_b, &best_b, 'b');
 	else if (best_b < 0)
 		ft_down(stack_b, &best_b, 'b');
-//	if (best_a > ft_lstsize(*stack_a))
-//		ft_down(stack_a, &best_a, 'a');
-//	if (best_b > ft_lstsize(*stack_b))
-//		ft_down(stack_b, &best_b, 'b');
 }

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 00:50:04 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/17 05:30:14 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/17 21:48:44 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,15 @@ void	ft_get_median(int *tab, int size, t_data *data)
 		}
 		i++;
 	}
-	i = i / 2;
 	k = i / 3;
-	l = (i / 3) + k;
+	l =  k * 2;
+	i = i / 2;
+	data->pos_low = k;
 	data->median = tab[i];
-	data->lowmedian = tab[k];
-	data->bigmedian = tab[l];
+	data->lowmedian = tab[l];
+	data->bigmedian = tab[k];
+//	ft_printf("ALL DATA : median = %d, low_median = %d, big median = %d, pos big = %d, pos low = %d", data->median,
+//	data->lowmedian, data->bigmedian, data->pos_big, data->pos_low);
 }
 
 void	ft_get_data(t_list **stack_a, t_data *data)
