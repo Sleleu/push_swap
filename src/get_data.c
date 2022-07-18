@@ -6,21 +6,21 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 00:50:04 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 00:20:33 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 05:58:38 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_get_min_max(t_list **stack_a, t_data *data)
+void	ft_get_min_max(t_list **s_a, t_data *data)
 {
-	int min;
-	int max;
+	int		min;
+	int		max;
 	t_list	*tmp;
 
-	tmp = *stack_a;
-	min = (*stack_a)->content;
-	max = (*stack_a)->content;
+	tmp = *s_a;
+	min = (*s_a)->content;
+	max = (*s_a)->content;
 	while (tmp)
 	{
 		if (tmp->content < min)
@@ -33,13 +33,13 @@ void	ft_get_min_max(t_list **stack_a, t_data *data)
 	data->max = max;
 }
 
-void	ft_get_tab(t_list **stack_a, int *tab, int size)
+void	ft_get_tab(t_list **s_a, int *tab, int size)
 {
-	int i;
+	int		i;
 	t_list	*tmp;
-	
+
 	i = 0;
-	tmp = *stack_a;
+	tmp = *s_a;
 	while (i < size)
 	{
 		tab[i] = tmp->content;
@@ -47,12 +47,13 @@ void	ft_get_tab(t_list **stack_a, int *tab, int size)
 		tmp = tmp->next;
 	}
 }
+
 void	ft_get_median(int *tab, int size, t_data *data)
 {
-	int i;
-	int j;
-	int k;
-	int l;
+	int	i;
+	int	j;
+	int	k;
+	int	l;
 
 	i = 0;
 	while (i < size)
@@ -67,7 +68,7 @@ void	ft_get_median(int *tab, int size, t_data *data)
 		i++;
 	}
 	k = i / 3;
-	l =  k * 2;
+	l = k * 2;
 	i = i / 2;
 	data->pos_low = k;
 	data->median = tab[i];
@@ -75,26 +76,26 @@ void	ft_get_median(int *tab, int size, t_data *data)
 	data->bigmedian = tab[k];
 }
 
-void	ft_get_data(t_list **stack_a, t_data *data)
+void	ft_get_data(t_list **s_a, t_data *data)
 {
-	int *tab;
-	int i;
-	int size;
+	int		*tab;
+	int		i;
+	int		size;
 	t_list	*tmp;
-	
+
 	i = 0;
-	tmp = *stack_a;
-	size = ft_lstsize(*stack_a);
+	tmp = *s_a;
+	size = ft_lstsize(*s_a);
 	tab = malloc(sizeof(int *) * size);
-		if (!tab)
-			exit(EXIT_FAILURE);
+	if (!tab)
+		exit(EXIT_FAILURE);
 	while (i < size)
 	{
 		tab[i] = tmp->content;
 		i++;
 		tmp = tmp->next;
 	}
-	ft_get_min_max(stack_a, data);
-	ft_get_tab(stack_a, tab, size);
+	ft_get_min_max(s_a, data);
+	ft_get_tab(s_a, tab, size);
 	ft_get_median(tab, size, data);
 }

@@ -8,6 +8,7 @@ SRC = src/push_swap.c\
 	  src/multiple_action.c\
 	  src/get_data.c\
 	  src/move.c\
+	  src/utils.c\
 
 OBJ = $(SRC:.c=.o)
 

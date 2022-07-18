@@ -6,123 +6,117 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:39:54 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 03:29:29 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 06:39:00 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int		ft_place(t_list **stack_a, t_list **stack_b, t_list *last)
+void	ft_init_sort(t_list **s_a, t_list **s_b, t_data *data)
 {
-	if ((*stack_b)->content > last->content && (*stack_b)->content < (*stack_a)->content)
-		return (1);
-	return (0);
-}
-
-void	ft_init_sort(t_list **stack_a, t_list **stack_b, t_data *data)
-{
-	while ((*stack_a)->next->next->next)
+	while ((*s_a)->next->next->next)
 	{
-		if ((*stack_a)->content == data->min || (*stack_a)->content == data->max)
-			ft_rotate(*stack_a, RA);
-		else if ((*stack_a)->content < data->lowmedian && data->pos_low > 0)
+		if ((*s_a)->content == data->min
+			|| (*s_a)->content == data->max)
+			ft_rotate(*s_a, RA);
+		else if ((*s_a)->content < data->lowmedian && data->pos_low > 0)
 		{
-			ft_rotate(*stack_a, RA);	
+			ft_rotate(*s_a, RA);
 			data->pos_low--;
 		}
-		else if ((*stack_a)->content < data->bigmedian)
-			ft_push_stack(stack_b, stack_a, PB);
-		else if ((*stack_a)->content > data->bigmedian)
+		else if ((*s_a)->content < data->bigmedian)
+			ft_push_stack(s_b, s_a, PB);
+		else if ((*s_a)->content > data->bigmedian)
 		{
-			ft_push_stack(stack_b, stack_a, PB);
-			ft_rotate(*stack_b, RB);
+			ft_push_stack(s_b, s_a, PB);
+			ft_rotate(*s_b, RB);
 		}
 		else
-			ft_push_stack(stack_b, stack_a, PB);
+			ft_push_stack(s_b, s_a, PB);
 	}
-	ft_algo_three(*stack_a);
+	ft_algo_three(*s_a);
 }
 
-void	ft_select_best_move(t_list **stack_a, t_list **stack_b)
+void	ft_select_best_move(t_list **s_a, t_list **s_b)
 {
-	int best_a;
-	int best_b;
-	int best_move;
+	int		best_a;
+	int		best_b;
+	int		best_move;
 	t_list	*tmp_a;
 	t_list	*tmp_b;
-	
+
 	best_move = 2147483647;
-	tmp_b = *stack_b;
-	(*stack_b)->pos = 0;
+	tmp_b = *s_b;
+	(*s_b)->pos = 0;
 	while (tmp_b)
 	{
-		(*stack_a)->pos = 0;
-		tmp_a = *stack_a;
-		while (tmp_a->next && !(tmp_b->content > tmp_a->content && tmp_b->content < tmp_a->next->content))
+		(*s_a)->pos = 0;
+		tmp_a = *s_a;
+		while (tmp_a->next && !ft_good_a(tmp_a, tmp_b))
 		{
-			if ((*stack_a)->pos == ft_lstsize(*stack_a) / 2)
-				(*stack_a)->pos = (ft_lstsize(*stack_a) - (*stack_a)->pos) * - 1;
-			(*stack_a)->pos++;
+			if ((*s_a)->pos == ft_lstsize(*s_a) / 2)
+				(*s_a)->pos = (ft_lstsize(*s_a) - (*s_a)->pos) * -1;
+			(*s_a)->pos++;
 			tmp_a = tmp_a->next;
 		}
-		if (tmp_a->next && tmp_b->content > tmp_a->content && tmp_b->content < tmp_a->next->content)
-			(*stack_a)->pos++;
-		if (abs((*stack_a)->pos) + abs((*stack_b)->pos) < abs(best_move))
+		if (tmp_a->next && ft_good_a(tmp_a, tmp_b))
+			(*s_a)->pos++;
+		if (ft_abs((*s_a)->pos) + ft_abs((*s_b)->pos) < ft_abs(best_move))
 		{
-			best_move = abs((*stack_a)->pos) + abs((*stack_b)->pos);
-			best_b = (*stack_b)->pos;
-			best_a = (*stack_a)->pos;
+			best_move = ft_abs((*s_a)->pos) + ft_abs((*s_b)->pos);
+			best_b = (*s_b)->pos;
+			best_a = (*s_a)->pos;
 		}
-		if ((*stack_b)->pos == ft_lstsize(*stack_b) / 2)
-			(*stack_b)->pos = (ft_lstsize(*stack_b) - (*stack_b)->pos) * - 1;
-		(*stack_b)->pos++;
+		if ((*s_b)->pos == ft_lstsize(*s_b) / 2)
+			(*s_b)->pos = (ft_lstsize(*s_b) - (*s_b)->pos) * -1;
+		(*s_b)->pos++;
 		tmp_b = tmp_b->next;
 	}
-	ft_move(stack_a, stack_b, best_a, best_b);
+	ft_move(s_a, s_b, best_a, best_b);
 }
 
-void	ft_rollthatdude(t_list **stack_a, t_list **stack_b, t_data *data)
+void	ft_rollthatdude(t_list **s_a, t_list **s_b, t_data *data)
 {
-	t_list *tmp;
-	static int place_min = 0;
-	static int place_median = 0;
-	tmp = *stack_a;
+	t_list		*tmp;
+	static int	place_min = 0;
+	static int	place_median = 0;
+
+	tmp = *s_a;
 	while (tmp->content != data->min)
 	{
 		place_min++;
 		tmp = tmp->next;
 	}
-	tmp = *stack_a;
+	tmp = *s_a;
 	while (tmp->content != data->median)
 	{
 		place_median++;
 		tmp = tmp->next;
 	}
-
-	while (!ft_is_sort(*stack_a, *stack_b))
+	while (!ft_is_sort(*s_a, *s_b))
 	{
 		if (place_min < place_median)
-			ft_rotate(*stack_a, RA);
+			ft_rotate(*s_a, RA);
 		else
-			ft_reverse_rotate(*stack_a, RRA);
+			ft_reverse_rotate(*s_a, RRA);
 	}
 }
 
-void	ft_big_algo(t_list **stack_a, t_list **stack_b, t_data *data)
+void	ft_big_algo(t_list **s_a, t_list **s_b, t_data *data)
 {
 	t_list	*last;
 
-	last = ft_lstlast(*stack_a);
-	ft_init_sort(stack_a, stack_b, data);
-	while (*stack_b && !ft_is_sort(*stack_a, *stack_b))
+	last = ft_lstlast(*s_a);
+	ft_init_sort(s_a, s_b, data);
+	while (*s_b && !ft_is_sort(*s_a, *s_b))
 	{
-		last = ft_lstlast(*stack_a);
-		if (ft_place(stack_a, stack_b, last))
+		last = ft_lstlast(*s_a);
+		if (ft_good_place(s_a, s_b, last))
 		{
-			ft_push_stack(stack_a, stack_b, PA);
+			ft_push_stack(s_a, s_b, PA);
 		}
 		else
-			ft_select_best_move(stack_a, stack_b);
+			ft_select_best_move(s_a, s_b);
 	}
-		ft_rollthatdude(stack_a, stack_b, data);
+	ft_rollthatdude(s_a, s_b, data);
 }
