@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:39:54 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/17 23:37:29 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 03:29:29 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_place(t_list **stack_a, t_list **stack_b, t_list *last)
 
 void	ft_init_sort(t_list **stack_a, t_list **stack_b, t_data *data)
 {
-	while ((*stack_a)->next->next)
+	while ((*stack_a)->next->next->next)
 	{
 		if ((*stack_a)->content == data->min || (*stack_a)->content == data->max)
 			ft_rotate(*stack_a, RA);
@@ -40,6 +40,7 @@ void	ft_init_sort(t_list **stack_a, t_list **stack_b, t_data *data)
 		else
 			ft_push_stack(stack_b, stack_a, PB);
 	}
+	ft_algo_three(*stack_a);
 }
 
 void	ft_select_best_move(t_list **stack_a, t_list **stack_b)
@@ -124,5 +125,4 @@ void	ft_big_algo(t_list **stack_a, t_list **stack_b, t_data *data)
 			ft_select_best_move(stack_a, stack_b);
 	}
 		ft_rollthatdude(stack_a, stack_b, data);
-	//	ft_printstack(*stack_a);
 }

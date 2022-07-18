@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:49 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/17 21:49:23 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 02:23:56 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_multiple_swap(t_list **stack_a, t_list **stack_b);
 
 /* ERROR */
 
-void	ft_error(int error);
+void	ft_error();
 void	ft_error_no_int(char **argv);
 void	ft_error_int_max(char **argv);
 void	ft_error_duplicate(char **argv);
@@ -77,14 +77,13 @@ void	ft_check_arg(char **argv);
 void	ft_print_action(int action);
 void	ft_algo_two(t_list *stack_a);
 void	ft_algo_three(t_list *stack_a);
-void	ft_algo_five(t_list **stack_a, t_list **stack_b);
+void	ft_algo_five(t_list **stack_a, t_list **stack_b, t_data *data);
 
 /* BIG ALGO */
 
 int		ft_place(t_list **stack_a, t_list **stack_b, t_list *last);
 void	ft_init_sort(t_list **stack_a, t_list **stack_b, t_data *data);
-void	ft_travelator_a(t_list **stack_a, t_list **stack_b, int best_a);
-int		ft_travelator_b(t_list **stack_a, t_list **stack_b, int place_b, int place_a);
+void	ft_select_best_move(t_list **stack_a, t_list **stack_b);
 void	ft_rollthatdude(t_list **stack_a, t_list **stack_b, t_data *data);
 void	ft_big_algo(t_list **stack_a, t_list **stack_b, t_data *data);
 
@@ -96,5 +95,7 @@ void	ft_move(t_list **stack_a, t_list **stack_b, int cost_a, int cost_b);
 
 void	ft_get_data(t_list **stack_a, t_data *data);
 void	ft_get_median(int *tab, int size, t_data *data);
+void	ft_get_tab(t_list **stack_a, int *tab, int size);
+void	ft_get_min_max(t_list **stack_a, t_data *data);
 
 #endif

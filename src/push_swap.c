@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:19 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/16 03:23:46 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 05:09:47 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	ft_algo(t_list **stack_a, t_list **stack_b, t_data *data)
 		ft_algo_two(*stack_a);
 	else if (ft_lstsize(*stack_a) == 3)
 		ft_algo_three(*stack_a);
-	/*else if (ft_lstsize(*stack_a) == 5)
-		ft_algo_five(stack_a, stack_b);*/
+	else if (ft_lstsize(*stack_a) == 5)
+		ft_algo_five(stack_a, stack_b, data);
 	else
 		ft_big_algo(stack_a, stack_b, data);
 }
@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	stack_b = NULL;
 	if (argc < 2)
-		ft_error(1);
+		ft_error();
 	ft_check_arg(argv);
 	ft_init_stack(argv, &stack_a);
 	ft_get_data(&stack_a, &data);

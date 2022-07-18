@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:43:19 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/15 17:46:58 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 05:16:40 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,61 @@
 void	ft_print_action(int action)
 {
 	if (action == SA)
-		ft_printf("sa\n");
+		write(1, "sa\n", 3);
 	else if (action == SB)
-		ft_printf("sb\n");
+		write(1, "sb\n", 3);
 	else if (action == SS)
-		ft_printf("ss\n");
+		write(1, "ss\n", 3);
 	else if (action == PA)
-		ft_printf("pa\n");
+		write(1, "pa\n", 3);
 	else if (action == PB)
-		ft_printf("pb\n");
+		write(1, "pb\n", 3);
 	else if (action == RA)
-		ft_printf("ra\n");
+		write(1, "ra\n", 3);
 	else if (action == RB)
-		ft_printf("rb\n");
+		write(1, "rb\n", 3);
 	else if (action == RR)
-		ft_printf("rr\n");
+		write(1, "rr\n", 3);
 	else if (action == RRA)
-		ft_printf("rra\n");
+		write(1, "rra\n", 4);
 	else if (action == RRB)
-		ft_printf("rrb\n");
+		write(1, "rrb\n", 4);
 	else if (action == RRR)
-		ft_printf("rrr\n");
+		write(1, "rrr\n", 4);
 }
 
 void	ft_algo_two(t_list *stack_a)
 {
 	ft_swap_stack(stack_a, SA);
+}
+
+void	ft_reverse_algo_three(t_list *stack_b)
+{
+	if (stack_b->content > stack_b->next->content)
+	{
+		if (stack_b->content < stack_b->next->next->content)
+			ft_reverse_rotate(stack_b, RRB);
+		else if (stack_b->next->content < stack_b->next->next->content)
+		{
+			ft_reverse_rotate(stack_b, RRB);
+			ft_swap_stack(stack_b, SB);
+		}
+	}
+	else
+	{
+		if (stack_b->next->content > stack_b->next->next->content)
+		{
+			if (stack_b->content > stack_b->next->next->content)
+				ft_swap_stack(stack_b, SB);
+			else
+				ft_rotate(stack_b, RB);
+		}
+		else
+		{
+			ft_swap_stack(stack_b, SB);
+			ft_reverse_rotate(stack_b, RRB);
+		}
+	}
 }
 
 void	ft_algo_three(t_list *stack_a)
@@ -49,7 +78,7 @@ void	ft_algo_three(t_list *stack_a)
 	{
 		if (stack_a->content > stack_a->next->next->content)
 			ft_reverse_rotate(stack_a, RRA);
-		else if (stack_a->content < stack_a->next->next->content)
+		else if (stack_a->next->content > stack_a->next->next->content)
 		{
 			ft_reverse_rotate(stack_a, RRA);
 			ft_swap_stack(stack_a, SA);
@@ -70,41 +99,23 @@ void	ft_algo_three(t_list *stack_a)
 			ft_reverse_rotate(stack_a, RRA);
 		}
 	}
-}	
+}
 
-/*
-void	ft_algo_five(t_list **stack_a, t_list **stack_b)
+void	ft_algo_five(t_list **stack_a, t_list **stack_b, t_data *data)
 {
-	t_list *last;
-	int	min;
-
-	min = (*stack_a)->content;
-	ft_push_stack(stack_b, stack_a, PB);
-	ft_push_stack(stack_b, stack_a, PB);
-	ft_algo_three(*stack_a);
-	
+	while ((*stack_a)->next->next)
+	{
+		if ((*stack_a)->content == data->min
+			|| (*stack_a)->content == data->max)
+			ft_rotate(*stack_a, RA);
+		else
+			ft_push_stack(stack_b, stack_a, PB);
+	}
+	ft_reverse_algo_three(*stack_b);
+	if ((*stack_a)->content == data->min)
+		ft_swap_stack(*stack_a, SA);
 	while (*stack_b)
-	{
-		if ((*stack_a)->content > (*stack_b)->content)
-			ft_push_stack(stack_a, stack_b, PA);
-		else
-			ft_rotate(*stack_a, RA);
-	}
-	ft_printstack(*stack_a);
-	last = *stack_a;
-	while (last)
-	{
-		if (last->content < min)
-			min = last->content;
-		last = last->next;
-	}
-		ft_printstack(*stack_a);
-		last = ft_lstlast(*stack_a);
-	while (!ft_is_sort(*stack_a, *stack_b))
-	{
-		if (last->content == min)
-			ft_reverse_rotate(*stack_a, RRA);
-		else
-			ft_rotate(*stack_a, RA);
-	}
-}*/
+		ft_push_stack(stack_a, stack_b, PA);
+	ft_reverse_rotate(*stack_a, RRA);
+	ft_rollthatdude(stack_a, stack_b, data);
+}
