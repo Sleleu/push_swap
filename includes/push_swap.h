@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:49 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 06:23:12 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 07:58:40 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ typedef struct s_data
 	int	min;
 	int	max;
 	int	median;
-	int lowmedian;
-	int bigmedian;
-	int pos_low;
+	int	lowmedian;
+	int	bigmedian;
+	int	pos_low;
 	int	index;
 }		t_data;
 
@@ -87,11 +87,11 @@ void	ft_big_algo(t_list **s_a, t_list **s_b, t_data *data);
 
 /* MOVE */
 
-void	ft_move(t_list **s_a, t_list **s_b, int cost_a, int cost_b);
-void	ft_down(t_list **stack, int *best, char c);
-void	ft_up(t_list **stack, int *best, char c);
-void	ft_db_down(t_list **s_a, t_list **s_b, int *best_a, int *best_b);
-void	ft_db_up(t_list **s_a, t_list **s_b, int *best_a, int *best_b);
+void	ft_move(t_list **s_a, t_list **s_b);
+void	ft_down(t_list **stack, char c);
+void	ft_up(t_list **stack, char c);
+void	ft_db_down(t_list **s_a, t_list **s_b);
+void	ft_db_up(t_list **s_a, t_list **s_b);
 
 /* GET DATA */
 
@@ -102,7 +102,8 @@ void	ft_get_min_max(t_list **s_a, t_data *data);
 
 /* UTILS */
 
-void	ft_swap(int *a, int *b);
+void	ft_find_best_a(t_list **s_a, t_list **tmp_a, t_list **tmp_b);
+void	ft_is_best(t_list **s_a, t_list **s_b, int *best_move);
 int		ft_abs(int i);
 int		ft_good_place(t_list **s_a, t_list **s_b, t_list *last);
 int		ft_good_a(t_list *tmp_a, t_list *tmp_b);

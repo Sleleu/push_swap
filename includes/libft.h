@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 17:53:16 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 05:52:36 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 08:19:30 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int				ft_isprint(int c);
 char			*ft_itoa(int n);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
-void			ft_lstclear(t_list **lst, void (*del)(int));
-void			ft_lstdelone(t_list *lst, void (*del)(int));
+void			ft_lstclear(t_list **lst, void (*del)(void *));
+void			ft_lstdelone(t_list *lst, void (*del)(void *));
 void			ft_lstiter(t_list *lst, void (*f)(int));
 t_list			*ft_lstlast(t_list *lst);
 t_list			*ft_lstnew(int content);

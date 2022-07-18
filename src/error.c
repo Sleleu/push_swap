@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:15:17 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 05:34:36 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 11:15:23 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_error_no_int(char **argv)
 		while (argv[i][j])
 		{
 			if ((argv[i][j] < '0' || argv[i][j] > '9')
-				&& argv[i][j] != '-' && argv[i][j] != ' ')
+				&& argv[i][j] != '-')
 				ft_error();
 			if (argv[i][j] == '-'
 				&& (argv[i][j + 1] < '0' || argv[i][j + 1] > '9'))

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:39:54 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 06:39:00 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 07:57:23 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	ft_init_sort(t_list **s_a, t_list **s_b, t_data *data)
 
 void	ft_select_best_move(t_list **s_a, t_list **s_b)
 {
-	int		best_a;
-	int		best_b;
 	int		best_move;
 	t_list	*tmp_a;
 	t_list	*tmp_b;
@@ -52,27 +50,17 @@ void	ft_select_best_move(t_list **s_a, t_list **s_b)
 	{
 		(*s_a)->pos = 0;
 		tmp_a = *s_a;
-		while (tmp_a->next && !ft_good_a(tmp_a, tmp_b))
-		{
-			if ((*s_a)->pos == ft_lstsize(*s_a) / 2)
-				(*s_a)->pos = (ft_lstsize(*s_a) - (*s_a)->pos) * -1;
-			(*s_a)->pos++;
-			tmp_a = tmp_a->next;
-		}
+		ft_find_best_a(s_a, &tmp_a, &tmp_b);
 		if (tmp_a->next && ft_good_a(tmp_a, tmp_b))
 			(*s_a)->pos++;
 		if (ft_abs((*s_a)->pos) + ft_abs((*s_b)->pos) < ft_abs(best_move))
-		{
-			best_move = ft_abs((*s_a)->pos) + ft_abs((*s_b)->pos);
-			best_b = (*s_b)->pos;
-			best_a = (*s_a)->pos;
-		}
+			ft_is_best(s_a, s_b, &best_move);
 		if ((*s_b)->pos == ft_lstsize(*s_b) / 2)
 			(*s_b)->pos = (ft_lstsize(*s_b) - (*s_b)->pos) * -1;
 		(*s_b)->pos++;
 		tmp_b = tmp_b->next;
 	}
-	ft_move(s_a, s_b, best_a, best_b);
+	ft_move(s_a, s_b);
 }
 
 void	ft_rollthatdude(t_list **s_a, t_list **s_b, t_data *data)

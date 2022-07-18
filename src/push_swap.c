@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:19 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 06:08:27 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 11:11:15 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ void	ft_algo(t_list **s_a, t_list **s_b, t_data *data)
 		ft_big_algo(s_a, s_b, data);
 }
 
+/*void	ft_free(t_list **stack)
+{
+	t_list *tmp;
+	
+	while (stack)
+	{
+		tmp
+	}
+}*/
+
 int	main(int argc, char **argv)
 {
 	t_list	*s_a;
@@ -69,7 +79,7 @@ int	main(int argc, char **argv)
 	ft_get_data(&s_a, &data);
 	if (!ft_is_sort(s_a, s_b))
 		ft_algo(&s_a, &s_b, &data);
-	ft_is_sort(s_a, s_b);
+	ft_lstclear(&s_a, free);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 00:50:04 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 05:58:38 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 09:48:41 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	ft_get_data(t_list **s_a, t_data *data)
 	ft_get_min_max(s_a, data);
 	ft_get_tab(s_a, tab, size);
 	ft_get_median(tab, size, data);
+	free(tab);
 }
