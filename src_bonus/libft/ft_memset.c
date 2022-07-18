@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/03 20:46:59 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/06 14:27:00 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/libft.h"
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
-}
+	size_t			i;
+	unsigned char	*s;
 
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
+	s = b;
+	i = 0;
+	while (len > 0)
+	{
+		s[i] = c;
+		len--;
+		i++;
+	}
+	return (b);
 }
+/*
+   int main(void)
+   {
+   char *str;
 
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
-}
+   str = ft_strdup("hellohello");
+   ft_memset(str, 32, 5);
+   printf("%s\n", str);
+   return (0);
+   }
+   */

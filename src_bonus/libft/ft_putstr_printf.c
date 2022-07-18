@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   ft_putstr_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/04 21:53:43 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/06 16:48:27 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/ft_printf.h"
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
+int	ft_putstr_printf(char *s, int fd)
 {
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
-}
+	int	i;
 
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
-}
-
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
+	i = 0;
+	if (!s)
+	{
+		ft_putstr_printf("(null)", 1);
+		return (6);
+	}
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	return (i);
 }

@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/25 14:12:06 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/18 22:53:22 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
-}
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
 
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
-}
+char	*get_next_line(int fd);
+char	*ft_gnl_strjoin(char *s1, char *s2);
+int		ft_gnl_strlen(char *str);
+char	*ft_gnl_strchr(char *s, int c);
+
+#endif

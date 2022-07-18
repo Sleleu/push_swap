@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   ft_putchar_printf.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/04 21:51:13 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/06 16:48:17 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/ft_printf.h"
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
+int	ft_putchar_printf(char c, int fd)
 {
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
-}
-
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
-}
-
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
+	write(fd, &c, 1);
+	return (1);
 }

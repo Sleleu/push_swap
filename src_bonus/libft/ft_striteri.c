@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/05 20:45:50 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/06 14:27:00 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/libft.h"
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
-}
+	size_t	i;
 
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
-}
-
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
+	i = 0;
+	while (s[i])
+	{
+		(*f)(i, s + i);
+		i++;
+	}
 }

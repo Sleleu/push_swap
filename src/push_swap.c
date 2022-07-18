@@ -6,7 +6,7 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 13:50:19 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 11:11:15 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/19 01:19:10 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,6 @@ void	ft_algo(t_list **s_a, t_list **s_b, t_data *data)
 		ft_big_algo(s_a, s_b, data);
 }
 
-/*void	ft_free(t_list **stack)
-{
-	t_list *tmp;
-	
-	while (stack)
-	{
-		tmp
-	}
-}*/
-
 int	main(int argc, char **argv)
 {
 	t_list	*s_a;
@@ -73,7 +63,7 @@ int	main(int argc, char **argv)
 	s_a = NULL;
 	s_b = NULL;
 	if (argc < 2)
-		ft_error();
+		exit(EXIT_FAILURE);
 	ft_check_arg(argv);
 	ft_init_stack(argv, &s_a);
 	ft_get_data(&s_a, &data);
@@ -82,17 +72,3 @@ int	main(int argc, char **argv)
 	ft_lstclear(&s_a, free);
 	return (0);
 }
-
-/*
-void ft_printstack(t_list *stack)
-{
-	t_list *elem;
-
-	elem = stack;
-	while (elem)
-	{
-		ft_printf("%d\n", elem->content);
-		elem = elem->next;
-	}
-		ft_printf("\n ------------- \n");
-}*/

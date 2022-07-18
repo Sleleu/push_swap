@@ -6,11 +6,11 @@
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:29:45 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/19 01:14:28 by sleleu           ###   ########.fr       */
+/*   Updated: 2022/07/18 21:06:26 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/checker.h"
 
 void	ft_swap(int *a, int *b)
 {
@@ -21,7 +21,7 @@ void	ft_swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	ft_swap_stack(t_list *stack, int action)
+void	ft_swap_stack(t_list *stack)
 {
 	t_list	*elem1;
 	t_list	*elem2;
@@ -29,20 +29,18 @@ void	ft_swap_stack(t_list *stack, int action)
 	elem1 = stack;
 	elem2 = stack->next;
 	ft_swap(&elem1->content, &elem2->content);
-	ft_print_action(action);
 }
 
-void	ft_push_stack(t_list **dest, t_list **src, int action)
+void	ft_push_stack(t_list **dest, t_list **src)
 {
 	t_list	*elem;
 
 	elem = *src;
 	*src = (*src)->next;
 	ft_lstadd_front(dest, elem);
-	ft_print_action(action);
 }
 
-void	ft_rotate(t_list *stack, int action)
+void	ft_rotate(t_list *stack)
 {
 	t_list	*elem1;
 	t_list	*elem2;
@@ -55,10 +53,9 @@ void	ft_rotate(t_list *stack, int action)
 		elem1 = elem1->next;
 		elem2 = elem2->next;
 	}
-	ft_print_action(action);
 }
 
-void	ft_reverse_rotate(t_list *stack, int action)
+void	ft_reverse_rotate(t_list *stack)
 {
 	t_list	*elem1;
 	t_list	*elem2;
@@ -70,5 +67,4 @@ void	ft_reverse_rotate(t_list *stack, int action)
 		ft_swap(&elem1->content, &elem2->content);
 		elem2 = elem2->next;
 	}
-	ft_print_action(action);
 }

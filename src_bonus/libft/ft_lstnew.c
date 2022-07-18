@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/17 16:54:43 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/07 17:18:46 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/libft.h"
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
+t_list	*ft_lstnew(int content)
 {
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
-}
+	t_list	*new;
 
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
-}
-
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	if (!content)
+		new->content = 0;
+	else
+		new->content = content;
+	new->next = NULL;
+	return (new);
 }

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/03 20:31:47 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/06 14:27:00 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/libft.h"
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
+int	ft_isdigit(int c)
 {
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }
-
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
-}
-
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
-}
+/*
+   int main(void)
+   {
+   int    c = 'a';
+   printf("%d\n", ft_isdigit(c));
+   printf("%d\n", isdigit(c));
+   return (0);
+   }
+   */

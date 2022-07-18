@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiple_action.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sleleu <sleleu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 15:34:36 by sleleu            #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:23 by sleleu           ###   ########.fr       */
+/*   Created: 2022/05/17 21:42:37 by sleleu            #+#    #+#             */
+/*   Updated: 2022/07/18 09:53:47 by sleleu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/libft.h"
 
-void	ft_multiple_rotate(t_list **s_a, t_list **s_b)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	ft_rotate(*s_a, RR);
-	ft_rotate(*s_b, 0);
-}
+	t_list	*ptr;
 
-void	ft_multiple_reverse_rotate(t_list **s_a, t_list **s_b)
-{
-	ft_reverse_rotate(*s_a, RRR);
-	ft_reverse_rotate(*s_b, 0);
-}
-
-void	ft_multiple_swap(t_list **s_a, t_list **s_b)
-{
-	ft_swap_stack(*s_a, SS);
-	ft_swap_stack(*s_b, 0);
+	ptr = *lst;
+	while (ptr)
+	{
+		ptr = (*lst)->next;
+		del(*lst);
+		*lst = ptr;
+	}
+	del(*lst);
 }
