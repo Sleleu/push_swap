@@ -49,6 +49,7 @@ For the project, a checker is provided in order to check if the program sort the
 git clone git@github.com:Sleleu/push_swap.git
 cd push_swap
 make
+make bonus
 ```
 
 ## Run the program
@@ -74,5 +75,5 @@ ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 ### Run push_swap with the checker
 
 ```shell
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker
+ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
 ```
