@@ -63,33 +63,16 @@ To run push swap with values :
 
 It will display the following operations :
 
+![push_swap](https://user-images.githubusercontent.com/93100775/185756917-95794b57-10d5-468e-a3e9-964f7c7018b4.jpg)
+
+To run push swap and count the number of instructions :
+
 ```shell
-ra
-ra
-pb
-pb
-pb
-rb
-pb
-sa
-rra
-ra
-ra
-pa
-ra
-pa
-ra
-pa
-ra
-pa
-ra
-ra
+ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 ```
 
 ### Run push_swap with the checker
 
-An example :
-
 ```shell
-
+ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker
 ```
